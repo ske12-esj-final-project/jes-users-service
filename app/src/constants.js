@@ -1,0 +1,1 @@
+module.exports.SECRET = process.env.SECRET || 'change-me'
