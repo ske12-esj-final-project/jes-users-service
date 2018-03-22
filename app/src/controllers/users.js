@@ -10,7 +10,7 @@ const verifyEmail = require('../middlewares/verify-email')
 const VerifyToken = require('../middlewares/verify-token')
 
 const { SECRET } = require('../constants')
-console.log('secret',SECRET)
+console.log('secret', SECRET)
 router.get('/ping', (req, res) => {
     res.json('ok')
 })
@@ -59,7 +59,7 @@ router.post('/register', verifyEmail, (req, res) => {
 })
 
 router.get('/logout', (req, res) => {
-    res.status(200).send({ auth: false, token: null })
+    return res.status(200).send({ auth: false, token: null })
 })
 
 
@@ -67,10 +67,16 @@ router.get('/me', VerifyToken, (req, res, next) => {
     User.findById(req.userId, { password: 0 }, (err, user) => {
         if (err) { return res.status(500).send("error to find user") }
         if (!user) { return res.status(404).send("user is not found") }
-        let {id,username,friends,email} = user
-        let response = {id,username,friends,email}
+        let { id, username, friends, email } = user
+        let response = { id, username, friends, email }
         res.status(200).send(response)
     })
+})
+
+router.get('/auth', VerifyToken, (req, res) => {
+    console.log('pass verify auth')
+    console.log(req.userId)
+    res.status(200).send({ auth: true, userId: req.userId })
 })
 
 
@@ -82,35 +88,35 @@ router.get('/', (req, res) => {
     User.find({}, (err, users) => {
         if (err) return res.status(500).send("Error can't find users")
         let response = users
-            .map(user=>({
-                id:user.id,
-                username:user.username,
-                email:user.email,
-                friends:user.friends
+            .map(user => ({
+                id: user.id,
+                username: user.username,
+                email: user.email,
+                friends: user.friends
             }))
         res.status(200).send(response)
     })
 })
 
 /**
-*  path : /v1/users/:id
+*  path : /v1/users/user/:id
 */
-router.get('/:id', function (req, res) {
+router.get('/user/:id', function (req, res) {
     User.findById(req.params.id, (err, user) => {
         if (err) {
-            return res.status(500).send("Error can't find user by id");
+            return res.status(500).send("Error can't find user by id")
         }
         if (!user) {
             return res.status(404).send("User not found")
         }
-        let {username,email,friends} = user
-        let response = {username,email,friends}
+        let { username, email, friends } = user
+        let response = { username, email, friends }
         res.status(200).send(response)
     })
 })
 
-router.get('/email/:email', function (req, res) {
-    User.findOne({email : req.params.email}, (err, user) => {
+router.get('/email/:email', (req, res) => {
+    User.findOne({ email: req.params.email }, (err, user) => {
         if (err) {
             console.log(err)
             return res.status(500).send("Error can't find user by email");
@@ -118,12 +124,11 @@ router.get('/email/:email', function (req, res) {
         if (!user) {
             return res.status(404).send("User not found")
         }
-        let {username,email,friends} = user
-        let response = {username,email,friends}
+        let { username, email, friends } = user
+        let response = { username, email, friends }
         res.status(200).send(response)
     })
 })
-
 
 
 
