@@ -71,15 +71,14 @@ paths:
             properties:
               auth:
                 type: boolean
-  '/users/{id}':
+  '/users/user/{id}':
     get:
       tags:
         - user
-      summary: Get user by user name
+      summary: Get user by user id
       description: ''
-      operationId: getUserByName
+      operationId: getUserByID
       produces:
-        - application/xml
         - application/json
       parameters:
         - name: id
