@@ -4,7 +4,7 @@ const verifyToken = (req, res, next) => {
     console.log('verifytoken : init')
     console.log('header',req.headers)
 const SECRET = process.env.SECRET || 'change-me'
-    var token = req.headers['access_token']
+    var token = req.headers['access-token']
     console.log('\nverify-token ',token,'\n')
     if (!token){
         return res.status(403).send({ auth: false, message: 'No token' })

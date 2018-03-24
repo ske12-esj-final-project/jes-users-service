@@ -20,7 +20,7 @@ const VERSION = process.env.VERSION || '1'
 //     res.header('Access-Control-Allow-Origin', '*');
 //     res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
 //     res.header('Access-Control-Allow-Headers', 'Content-Type');
-//     res.header('Access-Control-Allow-Headers', 'access_token');
+//     res.header('Access-Control-Allow-Headers', 'access-token');
 //     next()
 // })
 

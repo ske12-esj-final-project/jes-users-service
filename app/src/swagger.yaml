@@ -48,7 +48,7 @@ paths:
               auth: true
               token: "eyJhbGci;eyJhbGcieyJhbGcieyJhbGcieyJhbGcieyJhbGcieyJhbGci"
           headers:
-            access_token:
+            access-token:
               description: access token of jes service
               type: string
         '401':
