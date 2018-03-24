@@ -15,6 +15,15 @@ const swaggerDocument = YAML.load(path.join(__dirname,'/swagger.yaml'))
 const db = require('./db')
 const port = process.env.PORT || 8080
 const VERSION = process.env.VERSION || '1'
+
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    res.header('Access-Control-Allow-Headers', 'acess_token');
+    next()
+})
+
 app.use(cors())
 app.use(bodyParser.json())
 
