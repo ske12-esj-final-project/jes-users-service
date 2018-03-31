@@ -16,14 +16,6 @@ const db = require('./db')
 const port = process.env.PORT || 8080
 const VERSION = process.env.VERSION || '1'
 
-// app.use((req, res, next) => {
-//     res.header('Access-Control-Allow-Origin', '*');
-//     res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
-//     res.header('Access-Control-Allow-Headers', 'Content-Type');
-//     res.header('Access-Control-Allow-Headers', 'access-token');
-//     next()
-// })
-
 app.use(cors())
 app.options('*', cors())
 app.use(bodyParser.json())
@@ -36,6 +28,7 @@ app.get('/', (req,res)=>{
     res.send("user service is running")
 })
 
+console.log("Hello")
 let server = app.listen(port , () => {
     let port = server.address().port
     console.log(`user-service version : ${VERSION}`)

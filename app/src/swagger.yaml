@@ -14,6 +14,39 @@ tags:
 schemes:
   - http
 paths:
+  /users/register:
+    post:
+      tags:
+      - user
+      summary: Register user into the system
+      description: ''
+      operationId: registerUser
+      produces:
+        - application/json
+      parameters: 
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/UserForm"
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: object
+            properties:
+                auth:
+                  type: boolean
+                token:
+                  type: string
+            example:
+              auth: true
+              token: "eyJhbGci;eyJhbGcieyJhbGcieyJhbGcieyJhbGcieyJhbGcieyJhbGci"
+          headers:
+            access_token:
+              description: access token of jes service
+              type: string
+        '401':
+          description: Unauthorize
   /users/login:
     post:
       tags:
@@ -48,7 +81,7 @@ paths:
               auth: true
               token: "eyJhbGci;eyJhbGcieyJhbGcieyJhbGcieyJhbGcieyJhbGcieyJhbGci"
           headers:
-            access-token:
+            access_token:
               description: access token of jes service
               type: string
         '401':
@@ -71,14 +104,15 @@ paths:
             properties:
               auth:
                 type: boolean
-  '/users/user/{id}':
+  '/users/{id}':
     get:
       tags:
         - user
-      summary: Get user by user id
+      summary: Get user by user name
       description: ''
-      operationId: getUserByID
+      operationId: getUserByName
       produces:
+        - application/xml
         - application/json
       parameters:
         - name: id
@@ -116,3 +150,14 @@ definitions:
           description: User.id
     xml:
       name: Users
+  UserForm:
+    type: object
+    properties:
+      username:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
+    xml:
+      name: UserForm

@@ -1,0 +1,139 @@
+{
+	"variables": [],
+	"info": {
+		"name": "jes-db",
+		"_postman_id": "7c8ea47f-a271-6111-8faf-be88b21b1ce7",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"url": "http://localhost:8080/v1/users/register",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhOWU5ZjBkMzA2ZTc0MmE1MDc3NjVhZSIsImlhdCI6MTUyMDM0NTQyMywiZXhwIjoxNTIwMzQ1NDI0fQ.fvJIOmHg8OpnfwaR0BNXB5vejxzMucGV1ZJfMMPYT4g",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"hell2o-username\",\n\t\"email\": \"safes2uk@gmail.com\",\n\t\"password\":\"pas2sword-txt\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"url": "http://localhost:8080/v1/users/login",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhOWU5ZjBkMzA2ZTc0MmE1MDc3NjVhZSIsImlhdCI6MTUyMDM0NTQyMywiZXhwIjoxNTIwMzQ1NDI0fQ.fvJIOmHg8OpnfwaR0BNXB5vejxzMucGV1ZJfMMPYT4g",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"hello-username\",\n\t\"email\": \"safesuk@gmail.com\",\n\t\"password\":\"password-txt\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get-all-user",
+			"request": {
+				"url": "http://localhost:8080/v1/users",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhOWU5ZjBkMzA2ZTc0MmE1MDc3NjVhZSIsImlhdCI6MTUyMDM0NTQyMywiZXhwIjoxNTIwMzQ1NDI0fQ.fvJIOmHg8OpnfwaR0BNXB5vejxzMucGV1ZJfMMPYT4g",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"hello-username\",\n\t\"email\": \"safesuk@gmail.com\",\n\t\"password\":\"password-txt\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "me",
+			"request": {
+				"url": "http://localhost:8080/v1/users/me",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"url": "http://localhost:8080/v1/logout",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhOWU5ZjBkMzA2ZTc0MmE1MDc3NjVhZSIsImlhdCI6MTUyMDM0NTQyMywiZXhwIjoxNTIwMzQ1NDI0fQ.fvJIOmHg8OpnfwaR0BNXB5vejxzMucGV1ZJfMMPYT4g",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"hello-username\",\n\t\"email\": \"safes2u2k@gmail.com\",\n\t\"password\":\"password-txt\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get-user-by-id",
+			"request": {
+				"url": "http://localhost:8080/v1/users/5aadff6d2ec177b0a44f3653",
+				"method": "GET",
+				"header": [
+					{
+						"key": "access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhYWRmZjZkMmVjMTc3YjBhNDRmMzY1MyIsImlhdCI6MTUyMTM1MjU1NywiZXhwIjoxNTIxNDM4OTU3fQ.BwfH-no8pbMiq2z5KXDoK25Sc-bVWlyl07P1kMr5koI",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
