@@ -67,8 +67,8 @@ router.get('/me', VerifyToken, (req, res, next) => {
     User.findById(req.userId, { password: 0 }, (err, user) => {
         if (err) { return res.status(500).send("error to find user") }
         if (!user) { return res.status(404).send("user is not found") }
-        let { id, username, friends, email } = user
-        let response = { id, username, friends, email }
+        let { id, username, friends, email,clothIndex } = user
+        let response = { id, username, friends, email,clothIndex }
         res.status(200).send(response)
     })
 })
@@ -78,7 +78,6 @@ router.get('/auth', VerifyToken, (req, res) => {
     console.log(req.userId)
     res.status(200).send({ auth: true, userId: req.userId })
 })
-
 
 /**
  *  path : /v1/users
@@ -114,6 +113,30 @@ router.get('/user/:id', function (req, res) {
         res.status(200).send(response)
     })
 })
+
+router.put('/user/:id', (req, res) => {
+    let userID = req.params.id
+    let updateData = {
+        clothIndex:req.body.clothIndex
+    }
+    User.findByIdAndUpdate(userID,
+        updateData
+        , { new: true })
+        .then(user => {
+            if (!user) {
+                return res.status(404).send("User not found")
+            }
+            let { username, email, friends,clothIndex } = user
+            let response = { username, email, friends,clothIndex }
+            res.status(200).send(response)
+        })
+        .catch(err => {
+            if (err) {
+                return res.status(500).send("Error can't update user by id")
+            }
+        })
+})
+
 
 router.get('/email/:email', (req, res) => {
     User.findOne({ email: req.params.email }, (err, user) => {
