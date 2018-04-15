@@ -67,8 +67,8 @@ router.get('/me', VerifyToken, (req, res, next) => {
     User.findById(req.userId, { password: 0 }, (err, user) => {
         if (err) { return res.status(500).send("error to find user") }
         if (!user) { return res.status(404).send("user is not found") }
-        let { id, username, friends, email,clothIndex } = user
-        let response = { id, username, friends, email,clothIndex }
+        let { id, username, friends, email, clothIndex } = user
+        let response = { id, username, friends, email, clothIndex }
         res.status(200).send(response)
     })
 })
@@ -100,7 +100,7 @@ router.get('/', (req, res) => {
 /**
 *  path : /v1/users/user/:id
 */
-router.get('/user/:id', function (req, res) {
+router.get('/u/:id', function (req, res) {
     User.findById(req.params.id, (err, user) => {
         if (err) {
             return res.status(500).send("Error can't find user by id")
@@ -108,26 +108,45 @@ router.get('/user/:id', function (req, res) {
         if (!user) {
             return res.status(404).send("User not found")
         }
-        let { username, email, friends } = user
-        let response = { username, email, friends }
+        let { username, email, friends, score, clothIndex } = user
+        let response = { username, email, friends, score, clothIndex }
         res.status(200).send(response)
     })
 })
 
-router.put('/user/:id', (req, res) => {
+router.put('/u/:id/cloth', (req, res) => {
     let userID = req.params.id
     let updateData = {
-        clothIndex:req.body.clothIndex
+        clothIndex: req.body.clothIndex
     }
-    User.findByIdAndUpdate(userID,
-        updateData
-        , { new: true })
+
+    User.findByIdAndUpdate(userID, updateData, { new: true })
         .then(user => {
             if (!user) {
                 return res.status(404).send("User not found")
             }
-            let { username, email, friends,clothIndex } = user
-            let response = { username, email, friends,clothIndex }
+            let { username, email, friends, score, clothIndex } = user
+            let response = { username, email, friends, score, clothIndex }
+            res.status(200).send(response)
+        })
+        .catch(err => {
+            if (err) {
+                return res.status(500).send("Error can't update user by id")
+            }
+        })
+})
+
+router.put('/u/:id/score', (req, res) => {
+    let userID = req.params.id
+    let newScore = req.body.score
+
+    User.findByIdAndUpdate(userID, { $inc: { score: newScore } }, { new: true })
+        .then(user => {
+            if (!user) {
+                return res.status(404).send("User not found")
+            }
+            let { username, email, friends, score, clothIndex } = user
+            let response = { username, email, friends, score, clothIndex }
             res.status(200).send(response)
         })
         .catch(err => {
