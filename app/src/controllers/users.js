@@ -98,7 +98,7 @@ router.get('/', (req, res) => {
 })
 
 /**
-*  path : /v1/users/user/:id
+*  path : /v1/users/u/:id
 */
 router.get('/u/:id', function (req, res) {
     User.findById(req.params.id, (err, user) => {
