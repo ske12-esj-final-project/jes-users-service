@@ -15,6 +15,7 @@ const swaggerDocument = YAML.load(path.join(__dirname,'/swagger.yaml'))
 const db = require('./db')
 const port = process.env.PORT || 8080
 const VERSION = process.env.VERSION || '1'
+const APP_VERSION = '1.1'
 
 app.use(cors())
 app.options('*', cors())
@@ -31,7 +32,7 @@ app.get('/', (req,res)=>{
 console.log("Hello")
 let server = app.listen(port , () => {
     let port = server.address().port
-    console.log(`user-service version : ${VERSION}`)
+    console.log(`user-service version : ${APP_VERSION}`)
     console.log('running at http://' + 'localhost' + ':' + port)
 
 })
