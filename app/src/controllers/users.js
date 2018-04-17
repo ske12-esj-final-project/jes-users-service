@@ -6,14 +6,17 @@ const bcrypt = require('bcryptjs')
 
 const User = require('../models/user')
 
+const verifyUsername = require('../middlewares/verify-username')
 const verifyEmail = require('../middlewares/verify-email')
 const VerifyToken = require('../middlewares/verify-token')
 
 const { SECRET } = require('../constants')
 console.log('secret', SECRET)
+
 router.get('/ping', (req, res) => {
     res.json('ok')
 })
+
 router.post('/login', (req, res) => {
     console.log('login')
     User.findOne({ username: req.body.username }, (err, user) => {
@@ -35,7 +38,7 @@ router.post('/login', (req, res) => {
     })
 })
 
-router.post('/register', verifyEmail, (req, res) => {
+router.post('/register', verifyUsername,verifyEmail, (req, res) => {
     const hasedPassword = bcrypt.hashSync(req.body.password, 8)
     User.create({
         username: req.body.username,

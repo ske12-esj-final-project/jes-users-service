@@ -7,7 +7,7 @@ const verifyEmail = (req, res, next) => {
             return res.status(500).json('verifyEmail error')
         }
         if (users != null && users.length > 0) {
-            console.log('This email is used', users)
+            console.log('This email is used')
             return res.json('This email is used')
         }
         next()
