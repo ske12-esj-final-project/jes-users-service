@@ -70,8 +70,8 @@ router.get('/me', VerifyToken, (req, res, next) => {
     User.findById(req.userId, { password: 0 }, (err, user) => {
         if (err) { return res.status(500).send("error to find user") }
         if (!user) { return res.status(404).send("user is not found") }
-        let { id, username, friends, email, clothIndex } = user
-        let response = { id, username, friends, email, clothIndex }
+        let { id, username, clothIndex, score } = user
+        let response = { id, username, clothIndex, score }
         res.status(200).send(response)
     })
 })
@@ -111,8 +111,8 @@ router.get('/u/:id', function (req, res) {
         if (!user) {
             return res.status(404).send("User not found")
         }
-        let { username, email, friends, score, clothIndex } = user
-        let response = { username, email, friends, score, clothIndex }
+        let { username, clothIndex, score } = user
+        let response = { username, clothIndex, score }
         res.status(200).send(response)
     })
 })
