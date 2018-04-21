@@ -93,8 +93,8 @@ router.get('/', (req, res) => {
             .map(user => ({
                 id: user.id,
                 username: user.username,
-                email: user.email,
-                friends: user.friends
+                score: user.score,
+                clothIndex: user.clothIndex
             }))
         res.status(200).send(response)
     })
