@@ -104,13 +104,13 @@ paths:
             properties:
               auth:
                 type: boolean
-  '/users/{id}':
+  /users/u/{id}:
     get:
       tags:
         - user
-      summary: Get user by user name
+      summary: Get user by user id
       description: ''
-      operationId: getUserByName
+      operationId: getUserById
       produces:
         - application/xml
         - application/json
@@ -127,6 +127,89 @@ paths:
             $ref: '#/definitions/User'
         '400':
           description: Invalid username supplied
+        '404':
+          description: User not found
+  /users/me:
+    get:
+      tags:
+        - user
+      summary: get basic info of user using token
+      description: ''
+      operationId: getUserMe
+      parameters:
+        - in: header
+          name: access-token
+          schema:
+            type: string
+          required: true
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/User'
+        '500':
+          description: error to find user
+        '404':
+          description: user is not found
+  /users/u/{id}/cloth:
+    put:
+      tags:
+        - user
+      summary: Update cloth index of a user
+      description: ''
+      operationId: putCloth
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 'user id'
+          required: true
+          type: string
+
+        - name: clothIndex
+          in: body
+          description: 'index number of cloth'
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/User'
+        '500':
+          description: Error can't update user by id
+        '404':
+          description: User not found
+  /users/u/{id}/score:
+    put:
+      tags:
+        - user
+      summary: Update score incrementally of a user
+      description: ''
+      operationId: putScore
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 'user id'
+          required: true
+          type: string
+        - name: score
+          in: body
+          description: 'score to be added to user current'
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/User'
+        '500':
+          description: Error can't update user by id
         '404':
           description: User not found
 definitions:
@@ -148,6 +231,12 @@ definitions:
           type: string
           format: objectId
           description: User.id
+      score:
+        type: integer
+        minimum: 0
+      clothIndex:
+        type: integer
+        minimum: 0
     xml:
       name: Users
   UserForm:
