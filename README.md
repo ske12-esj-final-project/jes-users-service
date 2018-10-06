@@ -7,3 +7,4 @@ How to set up
 sudo MONGO_PORT=27018 PORT=7000 JWT_SECRET=secret \
      docker-compose up -d
 ```
+JUB
