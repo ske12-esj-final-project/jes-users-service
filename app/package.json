@@ -18,7 +18,7 @@
     "dotenv": "^5.0.1",
     "express": "^4.16.2",
     "js-yaml": "^3.11.0",
-    "jsonwebtoken": "^8.2.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.0.9",
     "nodemon": "^1.15.0",
     "swagger-ui-express": "^2.0.15",
