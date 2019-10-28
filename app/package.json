@@ -19,7 +19,7 @@
     "express": "^4.16.2",
     "js-yaml": "^3.11.0",
     "jsonwebtoken": "^8.2.0",
-    "mongoose": "^5.0.9",
+    "mongoose": "^5.7.5",
     "nodemon": "^1.15.0",
     "swagger-ui-express": "^2.0.15",
     "yaml-js": "^0.2.3",
